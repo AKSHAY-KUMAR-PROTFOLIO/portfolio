@@ -221,28 +221,61 @@
 </section>
 
   <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-form">
-        <h2>Contact Me</h2>
-        <form action="https://formspree.io/f/mnnpovyp" method="POST">
-          <div class="form-group">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <i class="fas fa-user"></i>
-          </div>
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Your Email" required>
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <i class="fas fa-comment"></i>
-          </div>
-          <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-      </div>
+  <!-- Contact Section -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-form">
+      <h2>Contact Me</h2>
+      <form id="contactForm">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required>
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Your Message" required></textarea>
+          <i class="fas fa-comment"></i>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+        <p id="form-message" style="margin-top: 10px;"></p>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // prevent default form submission
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const statusMessage = document.getElementById('form-message');
+
+    fetch("https://formspree.io/f/mnnpovyp", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        statusMessage.innerText = "Message sent successfully!";
+        form.reset(); // clear all inputs
+      } else {
+        statusMessage.innerText = "Oops! There was a problem.";
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      statusMessage.innerText = "There was an error sending your message.";
+    });
+  });
+</script>
+
 
   <!-- Footer -->
   <footer>
