@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akshay Kumar S | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Responsive Navbar Styles */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-left img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        background: #333;
+        margin-top: 10px;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-left">
+      <img src="profile.JPG" alt="Akshay" />
+      <h1>Portfolio</h1>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="banner">
+    <div class="container">
+      <div class="left">
+        <span>👋</span>
+        <h1>
+          I am <span class="highlight">Akshay Kumar S</span><br>
+          <span class="dynamictxt"></span><span class="blink"></span>
+        </h1>
+        <a href="https://drive.google.com/file/d/18ZRi0uY_l1wSWzhhQ9meAeK4tiYRdm6M/view?usp=drive_link" class="resume-link">View Resume</a>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="right">
+        <img src="person.png" alt="Akshay Profile" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-container">
+        <div class="about-img">
+          <img src="about-img.jpg" alt="About Me Photo">
+        </div>
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>Welcome to my portfolio showcasing my expertise as a Web and App Developer. I am Akshay Kumar S, a passionate and creative developer with a strong background in designing and building web applications and mobile apps. With a commitment to delivering high-quality solutions and a drive for continuous improvement, I am excited to share some of my recent projects and skills with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-container">
+        <div class="project-card">
+          <img src="ahoping.webp" alt="Smart Shopping Cart">
+          <div class="project-info">
+            <h3>Smart Shopping Cart</h3>
+            <a href="https://drive.google.com/drive/folders/1xPt1macAY670iQS2Wzuv2ilQYhs0Jbra?usp=sharing" class="btn">Read more</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="cnc.webp" alt="CNC Plotter">
+          <div class="project-info">
+            <h3>CNC Plotter</h3>
+            <a href="https://drive.google.com/drive/folders/1eI8vAtieNv9O01Lm9jHYVQMac6gtfOc2?usp=sharing" class="btn">Read more</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="linerobot.jpg" alt="Line Follower">
+          <div class="project-info">
+            <h3>Line Follower Robot</h3>
+            <a href="https://drive.google.com/drive/folders/1jBDxXo7ZQFXxXjwfkCJ_Wu0rjOcEh08K?usp=sharing" class="btn">Read more</a>
+          </div>
+        </div>
+        <div class="project-card">
+          <img src="leddisplay.jpg" alt="Led Matrix Display">
+          <div class="project-info">
+            <h3>Led Matrix Display</h3>
+            <a href="https://drive.google.com/drive/folders/1BJu1w469VGHT31w-i755S8ZG_-iHBF5C?usp=sharing" class="btn">Read more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Skills Section -->
+<section class="skills" id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-category">
+      <h3>Programming</h3>
+      <div class="skills-container">
+        <div class="skill-card">
+          <img src="html-icon.png" alt="HTML">
+          <p>HTML is used to create the structure of web pages and websites that are displayed on the Internet. It contains tags and attributes to design web pages.</p>
+        </div>
+        <div class="skill-card">
+          <img src="css-icon.png" alt="CSS">
+          <p>CSS is a rule-based language — you define rules by specifying groups of styles that should be applied to particular elements on your web page.</p>
+        </div>
+        <div class="skill-card">
+          <img src="js-icon.png" alt="JavaScript">
+          <p>JavaScript is a scripting language that allows you to implement complex features on web pages — every time a web page does more than display static information.</p>
+        </div>
+        <div class="skill-card">
+          <img src="figma-icon.png" alt="Figma">
+          <p>Figma is a collaborative interface design tool that connects teams in the design process to deliver better products, faster. It can be downloaded on desktop.</p>
+        </div>
+        <div class="skill-card">
+          <img src="python-icon.png" alt="Python">
+          <p>Python is a powerful programming language used for web development, data analysis, artificial intelligence, and more.</p>
+        </div>
+      </div>
+    </div>
+    <div class="skills-category">
+      <h3>Technical</h3>
+      <div class="skills-container">
+        <div class="skill-card">
+          <img src="fusion360-icon.webp" alt="Fusion 360">
+          <p>Fusion 360 is used for 3D CAD, modeling, manufacturing, and engineering design. It supports collaborative product development.</p>
+        </div>
+        <div class="skill-card">
+          <img src="office-icon.png" alt="Microsoft Office">
+          <p>Microsoft Office is a suite of applications including Word, Excel, and PowerPoint used for productivity and documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-form">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/mnnpovyp" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="form-group">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <i class="fas fa-comment"></i>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 All rights reserved. Built and maintained by Akshay Kumar S.
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script>
+    window.onload = function () {
+      // Typed.js text animation
+      new Typed(".dynamictxt", {
+        strings: ["Mechatronics Engg", "Web Developer.", "App Developer."],
+        typeSpeed: 100,
+        backSpeed: 60,
+        loop: true
+      });
+  
+      // Navbar toggle menu
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+  
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+  
+      // Close nav when menu item clicked (for mobile)
+      const navItems = document.querySelectorAll('.nav-links li a');
+      navItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('show');
+        });
+      });
+    };
+  </script>
+  
+
+
+</body>
+</html>
