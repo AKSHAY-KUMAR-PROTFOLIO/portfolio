@@ -1,0 +1,479 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Metropolis', sans-serif;
+    background-color: #fff;
+}
+nav{
+    width: 100%;
+    height: 5vh;
+    background-color: #fbf7f7;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding:2vw 10vw;
+}
+nav img{
+    width: 5vw;
+}
+nav ul li{
+    list-style: none;
+    justify-content: space-between;
+    align-items: center;
+    display: inline-block;
+    margin-left: 2vw;
+}
+
+nav ul li a{
+    text-decoration: none;
+    font-size: 1vw;
+    font-weight: 500;
+    color: black;
+}
+
+form{
+    display: flex;
+    align-items: center;
+}
+
+form input{
+    outline: 0;
+    border: none;
+    background-color: #f6eded;
+    font-size: 1vw;
+    padding: 0.5vw;
+    border-radius: 5vw;
+    color: #0d0c0c;
+    align-items: center;
+    padding-left: 2vw;
+}
+
+form .fa-magnifying-glass{
+    position: absolute;
+    font-size: 1vw;
+    margin-left: 0.5vw;
+    align-items: center;  
+    background-color: transparent;
+}
+
+form .fa-user{
+    margin-left: 0.5vw;
+    align-items: center;
+    font-size: 1vw;
+}
+
+form .fa-bag-shopping{
+    margin-left: 0.5vw;
+    align-items: center;
+    font-size: 1vw;
+}
+.container{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    
+}
+.wrapper{
+    display: flex;
+    width: 100%;
+    animation: slide 10s infinite;
+}
+
+@keyframes slide{
+    0%{
+        transform: translateX(0);
+    }
+
+    25%{
+        transform: translateX(0);
+    }
+    30%{
+        transform: translateX(-100%);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    55%{
+        transform: translateX(-200%);
+    }
+    75%{
+        transform: translateX(-200%);
+    }
+    80%{
+        transform: translateX(-300%);
+    }
+    100%{
+        transform: translateX(-300%);
+    }
+}
+.wrapper img{
+    width: 100%;
+    height: 85vh;
+    object-fit: cover;
+}
+
+.section1{
+    padding:2vw 10vw ;
+    
+}
+
+.section1 h3{
+    font-size: 1.5vw;
+    font-weight: 200;
+    padding-bottom: 1vw;
+}
+.section1 h3 span{
+    font-size: 1.5vw;
+    font-weight: 700;
+    border-bottom: red solid 0.2vw;
+}
+.vids{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    margin-top:1vw ;
+    cursor: pointer;
+}
+
+.vids .vidal{
+    width: 15vw;
+    height: 17vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.vids .vidal video{
+    object-fit: cover;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 0.5vw;
+   
+}
+.vids .vidal h4{
+    font-weight: 300;
+    padding: 1vw;
+    font-size: 1vw;
+}
+.section2{
+    padding:2vw 10vw ;
+    
+}
+.section2 img{
+    width: 80vw;
+}
+.section2 h3{
+    font-size: 1.5vw;
+    font-weight: 200;
+    padding-bottom: 1vw;
+}
+.section2 h3 span{
+    font-size: 1.5vw;
+    font-weight: 700;
+    border-bottom: red solid 0.2vw;
+}
+.stamp-dl{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:-5vw 2vw;
+    background-color: transparent;
+}
+
+.stamp-dl .vl{
+    border-right: #1f1919 0.115vw solid;
+    height: 3vw;
+    margin-left: 7vw;
+}
+
+.stamp h1{
+    /* position: absolute; */
+    font-weight: 100;
+    background-color: transparent;
+    color: #1f1919;
+}
+.stamp h1 span{
+    font-weight: 700;
+    background-color: transparent;
+}
+
+#clock{
+    background-color: transparent;
+    font-size: 1.5vw;
+    color: #1f1919;
+    padding-left: 1.25vw;
+}
+.section3{
+    padding:2vw 10vw ;
+    margin-top: -4vw;
+    align-items: center;
+    display: flex;justify-content: center;
+}
+
+.section3 .deals-cnt{
+    display: flex;
+    cursor: pointer;
+}
+.section3 .deals-cnt img{
+    width: 18.7vw;
+    height: 20vw;
+    border-radius: 0.54vw;
+    margin: 0vw 1vw;
+    object-fit: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+.deals{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.dealtag{
+    padding: 0.5vw 0vw;
+    font-size: 1vw;
+    border-radius: 10vw;
+    width: 13vw;
+    margin: -1vw 0vw;
+    background-color: #ffd042;
+}
+
+.dealtag h5{
+    background-color: transparent;
+    color: #131313;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.dealrate{
+    display: flex;
+    width: 19vw;
+    margin-top: 2vw;
+    background-color: transparent;
+}
+.dealrate .fa-star{
+    color: #ffd042;
+    font-size: 0.7vw;
+    padding-right: 0.5vw;
+    align-items: center;
+    justify-content: center;
+}
+.dealrate h6{
+    font-size: 0.7vw;
+    padding-right: 0.5vw;
+    align-items: center;
+    justify-content: center;
+    font-weight: 200;
+}
+.dealprice{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: -4vw;
+    margin-top: 0.5vw;
+    
+}
+.dealprice .deal-left h2{
+      font-size: 0.9vw;
+    font-weight: 700;
+}
+
+.deal-left h1{
+    font-size: 1vw;
+    font-weight: 700;
+    align-items: center;
+}
+
+.deal-left h1 span{
+    font-size: 0.5vw;
+}
+button{
+    background-color: #0d0c0c;
+    width: 7vw;
+    padding: 0.7vw;
+    font-size: 0.7vw;
+    color: #fff;
+    border-radius: 0.5vw;
+    outline: none;
+    border: none;
+    margin-left: 2vw;
+    cursor: pointer;
+}
+.section4{
+    padding: 2vw 10vw;
+}
+.section4 h3{
+    font-size: 1.5vw;
+    font-weight: 200;
+    padding-bottom: 1vw;
+}
+.section4 h3 span{
+    font-size: 1.5vw;
+    font-weight: 700;
+    border-bottom: red solid 0.2vw;
+}
+.list-cat{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+.list{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+.list h4{
+    font-size: 0.9vw;
+    text-align: center;
+}
+.section5{
+    padding: 2vw 10vw;
+}
+.section5 h3{
+    font-size: 1.5vw;
+    font-weight: 200;
+    padding-bottom: 1vw;
+}
+.section5 h3 span{
+    font-size: 1.5vw;
+    font-weight: 700;
+    border-bottom: red solid 0.2vw;
+}
+.section6{
+    padding: 2vw 10vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.section6 .badges{
+    margin: 0vw 3vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.badges img{
+    width: 7vw;
+    height: 7vw;
+}
+.badges h3{
+    font-size: 1vw;
+}
+.badges h3 span{
+    font-weight: 300;
+}
+.section7{
+    padding: 2vw 10vw;
+}
+.section7 h3{
+    font-size: 1.5vw;
+    font-weight: 200;
+    padding-bottom: 1vw;
+}
+.section7 h3 span{
+    font-size: 1.5vw;
+    font-weight: 700;
+    border-bottom: red solid 0.2vw;
+}
+.heros{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.8vw;
+    
+}
+.herocnt{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    background-color: #eff4f7;
+}
+.herocnt img{
+     width: 15vw;
+}
+
+.herocnt h1{
+    font-size: 1.4vw;
+    text-align: center;
+    background-color: transparent;
+    margin: 0.5vw 0vw;
+}
+.viewmore{
+    display: flex;
+    margin-top: 0.5vw;
+    margin-bottom: 1vw;
+    cursor: pointer;
+    background-color: transparent;
+}
+.viewmore h4{
+    background-color: transparent;
+    font-weight: 700;
+    margin-right: 0.4vw;
+    color: #2f5b96;
+}
+.viewmore .fa-right-to-bracket{
+    color: #2f5b96;
+    background-color: transparent;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#e4eaef ;
+    padding: 2vw 10vw;
+    margin-top: 4vw;
+}
+.footer .fleft{
+    background-color: transparent;
+}
+.fleft img{
+    background-color: transparent;
+    margin-bottom: 1.5vw;
+}
+.fleft h2{
+    background-color: transparent;
+    margin-bottom: 0.5vw;
+}
+.fleft input{
+    outline: none;
+    border: none;
+    width: 20vw;
+    padding: 1vw;
+    align-items: center;
+    justify-content: center;
+    margin-right: -2vw;
+    font-size: 0.8vw;
+    color: #1f1919;
+    border-radius: 0.5vw;
+}
+.fleft button{
+    width: 5vw;
+    padding: 1vw;
+    font-weight: 900;
+    cursor: pointer;
+}
+.fcent{
+    background-color: transparent;
+}
+.fcent h3{
+    font-size: 1vw;
+    background-color: transparent;
+    font-weight: 600;
+    line-height: 3vw;
+}
+.fcent h4{
+    font-size: 0.8vw;
+    background-color: transparent;
+    font-weight: 200;
+    line-height: 2vw;
+}
