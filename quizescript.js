@@ -51,34 +51,37 @@ const questions = [
             { text: "Carbon Dioxide", correct: true },
             { text: "Nitrogen", correct: false }
         ]
-    },
-   
+    }
 ];
+
 function showQuestion(question) {
     questionElement.innerText = question.question;
     answerButtons.innerHTML = '';
+    nextButton.disabled = true;
+
     question.answers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(answer));
+        button.addEventListener('click', (e) => selectAnswer(e, answer.correct));
         answerButtons.appendChild(button);
     });
 }
 
-function selectAnswer(answer) {
-    const correct = answer.correct;
+function selectAnswer(event, correct) {
+    const selectedButton = event.target;
+    const buttons = answerButtons.querySelectorAll('.btn');
+
+    buttons.forEach(button => {
+        button.disabled = true;
+        const isCorrect = questions[currentQuestionIndex].answers.find(a => a.text === button.innerText).correct;
+        button.style.backgroundColor = isCorrect ? "#00cc66" : "#cc3333";
+        button.style.color = "#fff";
+    });
+
     if (correct) {
         score++;
     }
-
-    
-    answerButtons.querySelectorAll('.btn').forEach(button => {
-        button.disabled = true;
-        if (button === event.target) {
-            button.classList.add(correct ? 'correct' : 'incorrect');
-        }
-    });
 
     nextButton.disabled = false;
 }
@@ -93,10 +96,12 @@ nextButton.addEventListener('click', () => {
 });
 
 function showResults() {
-    questionContainer.innerHTML = `<h2>Quiz Complete</h2>
-    <p>Your score: ${score} out of ${questions.length}</p>`;
+    questionContainer.innerHTML = `
+        <h2>Quiz Complete</h2>
+        <p>Your score: ${score} out of ${questions.length}</p>
+    `;
+    answerButtons.innerHTML = '';
     nextButton.style.display = 'none';
-    answerButtons.style.display = 'none';
 }
 
 showQuestion(questions[currentQuestionIndex]);
