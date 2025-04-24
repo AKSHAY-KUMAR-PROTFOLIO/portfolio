@@ -1,11 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
-.container{
+.container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,18 +13,25 @@
     width: 100%;
     height: 100vh;
     flex-direction: column;
+    padding: 1rem;
 }
-h1{
+
+h1 {
     color: #9f12d3;
     margin-bottom: 1rem;
+    font-size: 2rem;
 }
-.hero{
+
+.hero {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
-input{
-    width: 30rem;
+
+input {
+    width: 100%;
+    max-width: 500px;
     padding: 1.2rem;
     background-color: transparent;
     border: #fff solid 0.2rem;
@@ -32,30 +39,111 @@ input{
     font-size: 1.3rem;
     color: #fff;
     outline: none;
-    position: relative;
 }
-::placeholder{
+
+::placeholder {
     color: #eee9e9;
-
 }
 
-i{
+i {
     color: #fff;
     font-size: 1.2rem;
     background-color: #9f12d3;
     padding: 0.7rem;
     text-align: center;
     border-radius: 2rem;
-    left: 70rem;
     position: absolute;
+    right: 10px;
     cursor: pointer;
 }
 
-p{
+p {
     color: #fff;
     margin: 0.5rem;
-    left: 43rem;
-    top: 34rem;
-    position: absolute;
     font-weight: 500;
+    font-size: 1.2rem;
+}
+
+#message {
+    margin-top: 1rem;
+}
+
+#strength {
+    font-weight: bold;
+}
+/* Add this to your existing CSS */
+#generateBtn {
+    background-color: #26d730;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+#generateBtn:hover {
+    background-color: #1e9c27;
+}
+
+/* Add this to your existing CSS */
+
+/* Styling for the View button */
+#viewPasswordBtn {
+    background-color: transparent;
+    color: #9f12d3;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border: 2px solid #9f12d3;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+#viewPasswordBtn:hover {
+    background-color: #9f12d3;
+    color: white;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input {
+        width: 80%;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    i {
+        right: 5px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    input {
+        width: 90%;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    i {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
 }
