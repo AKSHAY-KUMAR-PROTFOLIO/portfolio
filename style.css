@@ -168,8 +168,8 @@
   }
   
   .banner .right img {
-    width: 70%;
-    max-width: 400px;
+    width: 90%;
+    max-width: 300px;
     height: auto;
   }
   
@@ -447,4 +447,5 @@
     margin-bottom: 1rem;
   }
 }
+
 
