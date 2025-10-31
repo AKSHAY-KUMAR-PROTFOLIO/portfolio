@@ -26,8 +26,8 @@ jobs:
 
       - name: Run STWDO Monitor
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.8286447523:AAHJ91zoJ1qM9x6f4RhK_9ng6vJn6F1z_6U }}
+          TELEGRAM_CHAT_ID: ${{ secrets.645607435 }}
         run: |
           python3 stwdo_monitor.py
           echo "Monitor finished."
