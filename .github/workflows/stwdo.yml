@@ -1,4 +1,4 @@
- name: STWDO Monitor
+name: STWDO Monitor
 
 on:
   schedule:
