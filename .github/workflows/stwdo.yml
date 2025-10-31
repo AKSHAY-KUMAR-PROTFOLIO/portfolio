@@ -1,4 +1,4 @@
-name: STWDO Monitor
+ name: STWDO Monitor
 
 on:
   schedule:
@@ -8,6 +8,8 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # allow the bot to push state updates
 
     steps:
       - name: Checkout repo (allow pushes)
