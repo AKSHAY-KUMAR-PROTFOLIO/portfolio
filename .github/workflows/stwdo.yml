@@ -2,7 +2,7 @@ name: STWDO Monitor
 
 on:
   schedule:
-    - cron: '*/15 * * * *'  # runs every 15 minutes
+    - cron: '*/5 * * * *'  # runs every 5 minutes
   workflow_dispatch:         # allows manual trigger
 
 jobs:
@@ -30,6 +30,9 @@ jobs:
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: |
           python3 stwdo_monitor.py
           echo "Monitor finished."
@@ -44,4 +47,3 @@ jobs:
             git push origin HEAD:main
           else
             echo "No state changes to commit."
-          fi
