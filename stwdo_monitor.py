@@ -2,7 +2,7 @@
 """
 stwdo_monitor.py
 Checks Studierendenwerk Dortmund current housing offers page and notifies via Telegram.
-Saves state in bot/state/status.txt (committed by GitHub Actions).
+Saves state in state/status.txt (committed by GitHub Actions).
 
 Requirements:
   pip install requests beautifulsoup4
@@ -23,7 +23,7 @@ from bs4 import BeautifulSoup
 # === CONFIG ===
 URL = "https://www.stwdo.de/en/living-houses-application/current-housing-offers"
 NO_RESULTS_PHRASE = "No results found for the given search criteria."
-STATE_PATH = Path("bot/state/status.txt")
+STATE_PATH = Path("state/status.txt")
 USER_AGENT = "stwdo-monitor/1.0 (+https://github.com/akshay-kumar-protfolio/portfolio)"
 
 
