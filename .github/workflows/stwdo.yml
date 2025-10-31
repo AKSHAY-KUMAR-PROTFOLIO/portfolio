@@ -1,0 +1,45 @@
+name: STWDO Monitor
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'  # runs every 15 minutes
+  workflow_dispatch:         # allows manual trigger
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (allow pushes)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run STWDO Monitor
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 stwdo_monitor.py
+          echo "Monitor finished."
+
+      - name: Commit and push updated state (if any)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git status --porcelain | grep -q "state/status.txt"; then
+            git add state/status.txt
+            git commit -m "Update monitor state [skip ci]"
+            git push origin HEAD:main
+          else
+            echo "No state changes to commit."
+          fi
