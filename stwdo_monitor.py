@@ -37,16 +37,17 @@ def notify_telegram(token: str, chat_id: str, text: str) -> bool:
 # --- Gmail notification ---
 def notify_gmail(sender: str, password: str, to: str, subject: str, body: str) -> bool:
     try:
+        recipients = [email.strip() for email in to.split(",")]
         msg = MIMEMultipart()
         msg['From'] = sender
-        msg['To'] = to
+        msg['To'] = ", ".join(recipients)
         msg['Subject'] = subject
         msg.attach(MIMEText(body, 'plain'))
 
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
         server.login(sender, password)
-        server.send_message(msg)
+        server.sendmail(sender, recipients, msg.as_string())
         server.quit()
         return True
     except Exception as e:
