@@ -9,10 +9,10 @@ jobs:
   check:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # allow the bot to push state updates
+      contents: write
 
     steps:
-      - name: Checkout repo (allow pushes)
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
           persist-credentials: true
@@ -47,3 +47,4 @@ jobs:
             git push origin HEAD:main
           else
             echo "No state changes to commit."
+          fi
