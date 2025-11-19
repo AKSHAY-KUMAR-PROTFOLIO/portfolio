@@ -2,7 +2,7 @@ name: STWDO Monitor
 
 on:
   schedule:
-    - cron: '* * * * *'  # check every minute
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -32,16 +32,19 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          TO_EMAIL: ${{ secrets.TO_EMAIL }}
+          TO_EMAIL: ${{ secrets/TO_EMAIL }}
         run: python3 stwdo_monitor.py
 
       - name: Commit updated state
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
           if git status --porcelain | grep -q "state/status.txt"; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
+            echo "State changed — committing..."
             git add state/status.txt
             git commit -m "Update monitor state [skip ci]"
             git push origin HEAD:main
           else
             echo "No state changes."
+          fi
