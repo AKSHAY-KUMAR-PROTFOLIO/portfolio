@@ -18,13 +18,14 @@ def notify_telegram(token: str, chat_id: str, text: str) -> bool:
         resp = requests.post(api, json={"chat_id": chat_id, "text": text, "parse_mode": "HTML"}, timeout=15)
         resp.raise_for_status()
         return True
-    except:
+    except Exception as e:
+        print(f"[WARN] Telegram failed: {e}")
         return False
 
-# --- Gmail notification with retry until success ---
-def notify_gmail_until_success(sender: str, password: str, to: str, subject: str, body: str, max_attempts=10) -> bool:
-    attempts = 0
+# --- Gmail notification with retry ---
+def notify_gmail_until_success(sender: str, password: str, to: str, subject: str, body: str, max_attempts=15) -> bool:
     recipients = [email.strip() for email in to.split(",")]
+    attempts = 0
 
     while attempts < max_attempts:
         attempts += 1
@@ -41,14 +42,14 @@ def notify_gmail_until_success(sender: str, password: str, to: str, subject: str
             server.sendmail(sender, recipients, msg.as_string())
             server.quit()
 
-            print(f"[INFO] Gmail success after {attempts} attempt(s)")
+            print(f"[INFO] Gmail succeeded after {attempts} attempt(s).")
             return True
 
         except Exception as e:
             print(f"[WARN] Gmail attempt {attempts} failed: {e}")
-            time.sleep(5)  # wait before retrying
+            time.sleep(5)
 
-    print("[ERROR] Gmail never succeeded after all retries.")
+    print("[ERROR] Gmail failed after all retries.")
     return False
 
 # --- Fetch page ---
@@ -71,13 +72,6 @@ def write_state(value: str):
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(value)
 
-# --- Extract snippet ---
-def extract_snippet(html: str, max_len=800) -> str:
-    soup = BeautifulSoup(html, "html.parser")
-    text = soup.get_text(separator="\n").strip()
-    text = "\n".join([ln.strip() for ln in text.splitlines() if ln.strip()])
-    return text[:max_len] + ("…" if len(text) > max_len else "")
-
 def main():
     try:
         html = fetch_page(URL)
@@ -89,10 +83,9 @@ def main():
     prev = read_state()
 
     new_state = "offers" if present else "no_offers"
+    print(f"[INFO] Previous state: {prev} -> New state: {new_state}")
 
-    print(f"[INFO] Previous: {prev} → New: {new_state}")
-
-    # Determine if we should notify (edge triggers)
+    # Determine event type (edge-trigger only)
     should_notify = False
     event_type = None
 
@@ -113,55 +106,46 @@ def main():
         write_state(new_state)
         return
 
-    # Prepare content
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
     if event_type == "appeared":
-    msg = (
-        "🏠 <b>New STWDO housing offers available!</b>\n"
-        f"Time: {timestamp}\n"
-        f"{URL}"
-          )
-   else:
-    msg = (
-        "🔒 <b>STWDO offers closed / disappeared.</b>\n"
-        f"Time: {timestamp}\n"
-        f"{URL}"
-         )
-
+        msg = (
+            "🏠 <b>New STWDO housing offers available!</b>\n"
+            f"Time: {timestamp}\n"
+            f"{URL}"
+        )
+    else:
+        msg = (
+            "🔒 <b>STWDO housing offers closed / disappeared.</b>\n"
+            f"Time: {timestamp}\n"
+            f"{URL}"
+        )
 
     # Load secrets
     tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
     tg_chat_id = os.getenv("TELEGRAM_CHAT_ID")
-
     gmail_addr = os.getenv("GMAIL_ADDRESS")
     gmail_pass = os.getenv("GMAIL_APP_PASSWORD")
     to_email = os.getenv("TO_EMAIL")
 
     sent_ok = False
 
-    # Try Telegram first (one attempt)
+    # Try Telegram once
     if tg_token and tg_chat_id:
         if notify_telegram(tg_token, tg_chat_id, msg):
-            print("[INFO] Telegram OK")
             sent_ok = True
-        else:
-            print("[WARN] Telegram failed")
 
-    # Gmail: retry until success
+    # Gmail MUST succeed before updating state
     if gmail_addr and gmail_pass and to_email:
         if notify_gmail_until_success(gmail_addr, gmail_pass, to_email, "STWDO Update", msg):
             sent_ok = True
-    else:
-        print("[WARN] Gmail disabled")
 
     if not sent_ok:
-        print("[ERROR] No notification channel succeeded. State NOT updated.")
+        print("[ERROR] No notification succeeded. NOT updating state.")
         sys.exit(2)
 
-    # Only here → notifications succeeded
     write_state(new_state)
-    print("[INFO] State updated successfully.")
+    print("[INFO] State updated.")
 
 if __name__ == "__main__":
     main()
