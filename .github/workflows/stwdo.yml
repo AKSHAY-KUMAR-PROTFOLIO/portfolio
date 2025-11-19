@@ -32,7 +32,7 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          TO_EMAIL: ${{ secrets/TO_EMAIL }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: python3 stwdo_monitor.py
 
       - name: Commit updated state
