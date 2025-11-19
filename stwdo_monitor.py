@@ -117,19 +117,18 @@ def main():
     timestamp = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
 
     if event_type == "appeared":
-        msg = (
-            "🏠 <b>New STWDO housing offers available!</b>\n\n"
-            f"URL: {URL}\n"
-            f"Time: {timestamp}\n\n"
-            + extract_snippet(html, 1200)
-        )
-    else:
-        msg = (
-            "🔒 <b>All STWDO housing offers have disappeared.</b>\n\n"
-            f"URL: {URL}\n"
-            f"Time: {timestamp}\n"
-            f"No offers are currently listed."
-        )
+    msg = (
+        "🏠 <b>New STWDO housing offers available!</b>\n"
+        f"Time: {timestamp}\n"
+        f"{URL}"
+          )
+   else:
+    msg = (
+        "🔒 <b>STWDO offers closed / disappeared.</b>\n"
+        f"Time: {timestamp}\n"
+        f"{URL}"
+         )
+
 
     # Load secrets
     tg_token = os.getenv("TELEGRAM_BOT_TOKEN")
