@@ -1,55 +1,98 @@
 const apiKey = "347a48fc38b6ed9b71878f03df1cac35";
-const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search img");
 const weatherIcon = document.querySelector(".weather img");
+const card = document.querySelector(".card");
 
 async function checkWeather(city) {
-    if(city === '') {
+    if (city.trim() === "") {
         alert("Please enter a city name!");
         return;
     }
 
-    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    try {
+        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-    if (response.status === 404) {
-        document.querySelector(".card h5").style.display = "block";
-        document.querySelector(".weather").style.display = "none";
-        document.querySelector(".bottom").style.display = "none";
-    } else {
+        if (!response.ok) {
+            document.querySelector(".card h5").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+            document.querySelector(".bottom").style.display = "none";
+            return;
+        }
+
+        const data = await response.json();
+
         document.querySelector(".card h5").style.display = "none";
         document.querySelector(".weather").style.display = "block";
         document.querySelector(".bottom").style.display = "flex";
-    }
 
-    const data = await response.json();
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
 
-    document.querySelector(".city").innerHTML = data.name;
-    document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-    document.querySelector(".humidity").innerHTML = data.main.humidity + " %";
-    document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
+        const condition = data.weather[0].main;
+        setWeatherUI(condition);
 
-    // Weather Icon Change based on conditions
-    if (data.weather[0].main === "Clouds") {
-        weatherIcon.src = "images/clouds.png";
-    } else if (data.weather[0].main === "Clear") {
-        weatherIcon.src = "images/clear.png";
-    } else if (data.weather[0].main === "Rain") {
-        weatherIcon.src = "images/rain.png";
-    } else if (data.weather[0].main === "Drizzle") {
-        weatherIcon.src = "images/drizzle.png";
-    } else if (data.weather[0].main === "Mist") {
-        weatherIcon.src = "images/mist.png";
+    } catch (error) {
+        alert("Something went wrong. Please try again!");
     }
 }
 
-// Event listener for search button click
+function setWeatherUI(condition) {
+    switch (condition) {
+        case "Clear":
+            weatherIcon.src = "images/clear.png";
+            card.style.background = "linear-gradient(135deg, #fbc531, #f5a623)";
+            break;
+
+        case "Clouds":
+            weatherIcon.src = "images/clouds.png";
+            card.style.background = "linear-gradient(135deg, #7f8fa6, #353b48)";
+            break;
+
+        case "Rain":
+            weatherIcon.src = "images/rain.png";
+            card.style.background = "linear-gradient(135deg, #4b79a1, #283e51)";
+            break;
+
+        case "Drizzle":
+            weatherIcon.src = "images/drizzle.png";
+            card.style.background = "linear-gradient(135deg, #74b9ff, #0984e3)";
+            break;
+
+        case "Thunderstorm":
+            weatherIcon.src = "images/thunder.png";
+            card.style.background = "linear-gradient(135deg, #2c3e50, #000000)";
+            break;
+
+        case "Snow":
+            weatherIcon.src = "images/snow.png";
+            card.style.background = "linear-gradient(135deg, #dfe6e9, #b2bec3)";
+            break;
+
+        case "Mist":
+        case "Fog":
+        case "Haze":
+        case "Smoke":
+            weatherIcon.src = "images/mist.png";
+            card.style.background = "linear-gradient(135deg, #636e72, #2d3436)";
+            break;
+
+        default:
+            weatherIcon.src = "images/clear.png";
+            card.style.background = "linear-gradient(135deg, #02faf6, #0054fc)";
+    }
+}
+
+// Click search
 searchBtn.addEventListener("click", () => {
     checkWeather(searchBox.value);
 });
 
-// Optional: Allow 'Enter' key press to trigger search
+// Enter key search
 searchBox.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
         checkWeather(searchBox.value);
