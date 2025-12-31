@@ -44,32 +44,32 @@ async function checkWeather(city) {
 function setWeatherUI(condition) {
     switch (condition) {
         case "Clear":
-            weatherIcon.src = "clear.png";
+            weatherIcon.src = "images/clear.png";
             card.style.background = "linear-gradient(135deg, #fbc531, #f5a623)";
             break;
 
         case "Clouds":
-            weatherIcon.src = "clouds.png";
+            weatherIcon.src = "images/clouds.png";
             card.style.background = "linear-gradient(135deg, #7f8fa6, #353b48)";
             break;
 
         case "Rain":
-            weatherIcon.src = "rain.png";
+            weatherIcon.src = "images/rain.png";
             card.style.background = "linear-gradient(135deg, #4b79a1, #283e51)";
             break;
 
         case "Drizzle":
-            weatherIcon.src = "drizzle.png";
+            weatherIcon.src = "images/drizzle.png";
             card.style.background = "linear-gradient(135deg, #74b9ff, #0984e3)";
             break;
 
         case "Thunderstorm":
-            weatherIcon.src = "thunder.png";
+            weatherIcon.src = "images/thunder.png";
             card.style.background = "linear-gradient(135deg, #2c3e50, #000000)";
             break;
 
         case "Snow":
-            weatherIcon.src = "snow.png";
+            weatherIcon.src = "images/snow.png";
             card.style.background = "linear-gradient(135deg, #dfe6e9, #b2bec3)";
             break;
 
@@ -77,12 +77,12 @@ function setWeatherUI(condition) {
         case "Fog":
         case "Haze":
         case "Smoke":
-            weatherIcon.src = "mist.png";
+            weatherIcon.src = "images/mist.png";
             card.style.background = "linear-gradient(135deg, #636e72, #2d3436)";
             break;
 
         default:
-            weatherIcon.src = "clear.png";
+            weatherIcon.src = "images/clear.png";
             card.style.background = "linear-gradient(135deg, #02faf6, #0054fc)";
     }
 }
@@ -98,4 +98,3 @@ searchBox.addEventListener("keypress", (e) => {
         checkWeather(searchBox.value);
     }
 });
-
