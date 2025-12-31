@@ -68,6 +68,7 @@
     width: 100%;
     padding: 4rem 2rem;
     background-color: #111;
+    
   }
   
   .banner .container {
@@ -431,10 +432,47 @@
     display: flex;
   }
 
-  .banner,
+  /*.banner,
   .about-container {
     flex-direction: column;
     text-align: center;
+  }*/
+
+  .banner {
+    padding: 3rem 1.5rem;
+  }
+
+  .banner .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .banner .left,
+  .banner .right {
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .banner .left h1 {
+    font-size: 2.2rem;
+  }
+
+  .banner .left span {
+    font-size: 2.2rem;
+  }
+
+  .dynamictxt {
+    font-size: 1.8rem;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .banner .right img {
+    width: 70%;
+    margin-top: 2rem;
   }
 
   .projects-container,
@@ -447,7 +485,53 @@
     margin-bottom: 1rem;
   }
 }
+@media (max-width: 480px) {
+  .banner {
+    padding: 2.5rem 1rem;
+  }
 
+  .banner .left h1 {
+    font-size: 1.8rem;
+  }
+
+  .banner .left span {
+    font-size: 1.8rem;
+  }
+
+  .dynamictxt {
+    font-size: 1.5rem;
+  }
+
+  .resume-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .social-icons a {
+    font-size: 1.4rem;
+  }
+
+  .banner .right img {
+    width: 80%;
+  }
+}
+@media (min-width: 1400px) {
+  .banner .left h1 {
+    font-size: 3.5rem;
+  }
+
+  .banner .left span {
+    font-size: 3.5rem;
+  }
+
+  .dynamictxt {
+    font-size: 2.8rem;
+  }
+
+  .banner .right img {
+    max-width: 450px;
+  }
+}
 
 
 
