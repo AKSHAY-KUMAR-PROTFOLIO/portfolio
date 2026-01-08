@@ -476,4 +476,121 @@ button{
     background-color: transparent;
     font-weight: 200;
     line-height: 2vw;
+
+}
+
+/* Tablet and Small Laptops (Max 1024px) */
+@media screen and (max-width: 1024px) {
+    nav { padding: 2vw 5vw; }
+    nav ul li a { font-size: 1.5vw; }
+    form input { width: 15vw; }
+    .wrapper img { height: 60vh; }
+    .section3 .deals-cnt { flex-wrap: wrap; justify-content: space-around; }
+    .deals { margin-bottom: 4vw; }
+    .section3 .deals-cnt img { width: 35vw; height: auto; }
+}
+
+/* Mobile Devices (Max 768px) */
+@media screen and (max-width: 768px) {
+    nav {
+        height: auto;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    nav img { width: 80px; }
+    
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+    }
+    
+    nav ul li a { font-size: 14px; }
+    
+    form input {
+        width: 60vw;
+        font-size: 14px;
+        padding: 8px 30px;
+    }
+
+    /* Adjusting the Hero Slider */
+    .wrapper img { height: 40vh; }
+
+    /* Sections Headings */
+    .section1 h3, .section2 h3, .section4 h3, .section5 h3, .section7 h3 {
+        font-size: 20px;
+    }
+    .section1 h3 span, .section2 h3 span, .section4 h3 span, .section5 h3 span, .section7 h3 span {
+        font-size: 20px;
+    }
+
+    /* Video Categories */
+    .vids {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .vids .vidal {
+        width: 45%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+    .vids .vidal video {
+        width: 100%;
+        height: auto;
+    }
+    .vids .vidal h4 { font-size: 14px; }
+
+    /* Daily Deals Stamp */
+    .stamp-dl {
+        flex-direction: column;
+        margin: -15vw 2vw;
+    }
+    .stamp h1 { font-size: 14px; }
+    .stamp-dl .vl { display: none; }
+
+    /* Product Cards */
+    .section3 .deals-cnt {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .section3 .deals-cnt img {
+        width: 100%;
+        margin: 0;
+    }
+    .dealtag { width: 90%; font-size: 10px; }
+    .dealprice .deal-left h2 { font-size: 12px; }
+    .dealprice .deal-left h1 { font-size: 14px; }
+    button { width: 100%; margin-left: 0; margin-top: 5px; font-size: 10px; }
+
+    /* Category List */
+    .list-cat {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .list h4 { font-size: 10px; }
+
+    /* Badges */
+    .section6 { flex-wrap: wrap; }
+    .section6 .badges { width: 40%; margin: 10px; }
+
+    /* Lifestyle Section */
+    .section7 .heros {
+        flex-direction: column;
+    }
+    .herocnt img { width: 80vw; }
+    .herocnt h1 { font-size: 18px; }
+
+    /* Footer */
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .fleft input { width: 70vw; }
+    .fleft button { width: 15vw; }
 }
