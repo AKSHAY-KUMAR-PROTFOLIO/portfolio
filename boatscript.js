@@ -52,4 +52,3 @@ function showTime() {
  
 showTime();
 
-alert ('COPY RIGHT AKMODS');
