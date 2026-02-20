@@ -211,6 +211,7 @@
   .about-text {
     flex: 1;
     min-width: 280px;
+    line-height: 1.5; /* 1.5 times the font size */
   }
   
   .about-text h2 {
@@ -261,6 +262,10 @@
     padding: 1rem;
     text-align: center;
   }
+  .project-info p{
+    line-height: 1.5;
+    color: rgb(155, 145, 160);
+  }
   
   .btn {
     display: inline-block;
@@ -305,6 +310,10 @@
     text-align: center;
     color: white;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  }
+
+  .skill-card p{
+    line-height: 1.5;
   }
   
   .skill-card img {
