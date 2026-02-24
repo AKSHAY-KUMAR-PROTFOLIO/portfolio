@@ -124,7 +124,7 @@
   </section>
 
   <!-- About Section -->
-  <section class="about" id="about">
+  <section class="about reveal" id="about">
     <div class="container">
       <div class="about-container">
         <div class="about-img">
@@ -145,17 +145,17 @@ Outside technology, I enjoy painting goddess sculptures and exploring creative p
     
 
   <!-- Projects Section -->
-  <section class="projects" id="projects">
+  <section class="projects reveal" id="projects">
     <div class="container">
       <h2 class="section-title">Academic Projects</h2>
       <div class="projects-container">
         <div class="project-card">
-          <img src="tsp.png" alt="Traveling Salesman Problem">
+          <img src="images/tsp.png" alt="Traveling Salesman Problem">
           <div class="project-info">
             <h3>Traveling Salesman Problem</h3>
             <p>MATLAB • Optimization • Algorithms
 Implemented TSP in MATLAB to optimize shortest routes for salesman.</p>
-            <a href="https://drive.google.com/drive/folders/1s2Y_mYqukV0Vw5wyc7f34sMaznhN4-1Y?usp=sharing" class="btn">Read more</a>
+            <a href="tsp.html" class="btn">Read more</a>
           </div>
         </div>
         <div class="project-card">
@@ -199,7 +199,7 @@ Create a programmable display for showing scrolling messages and custom patterns
   </section>
 
 <!-- Webdevelopment Section -->
-<section class="projects" id="projects">
+<section class="projects reveal" id="projects">
   <div class="container">
     <h2 class="section-title">Web development Projects</h2>
     <div class="projects-container">
@@ -257,7 +257,7 @@ Create a programmable display for showing scrolling messages and custom patterns
 </section>
 
 <!-- Skills Section -->
-<section class="skills" id="skills">
+<section class="skills reveal" id="skills">
   <div class="container">
     <h2 class="section-title">Skills</h2>
     <div class="skills-category">
@@ -307,7 +307,7 @@ Create a programmable display for showing scrolling messages and custom patterns
 
   <!-- Contact Section -->
   <section id="contact">
-    <div class="container">
+    <div class="container reveal">
       <div class="contact-form">
         <h2>Contact Me</h2>
         <form action="https://formspree.io/f/mnnpovyp" method="POST">
@@ -363,7 +363,21 @@ Create a programmable display for showing scrolling messages and custom patterns
       });
     };
   </script>
-  
+  <!-- ===== SCROLL ANIMATION SCRIPT ===== -->
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+</script>
 
 
 </body>
