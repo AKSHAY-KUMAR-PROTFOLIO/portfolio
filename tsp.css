@@ -104,6 +104,7 @@
   border-radius:25px;
   overflow:hidden;
   box-shadow:0 20px 60px rgba(0,0,0,0.6);
+   background:#000; /* fills empty space nicely */
   transform:scale(0.95);
   transition:all 1s ease;
 }
@@ -112,8 +113,8 @@
 .video-container video{
   width:100%;
   height:auto;
-  display:block;
-  object-fit:cover;
+  max-height:70vh;   /* large but safe */
+  object-fit:contain; /* IMPORTANT → no crop */
 }
 
 /* reveal animation */
@@ -144,12 +145,22 @@
 .content.reverse{
   flex-direction:row-reverse;
 }
-
-.image img{
-  width:100%;
-  max-width:500px;
+.image{
+ width:100%;
+  max-width:520px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#0a0f18; /* optional frame background */
   border-radius:15px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  padding:10px;
+}
+.image img{
+   width:100%;
+  height:auto;
+  max-height:320px;   /* keeps uniform size */
+  object-fit:cover; /* IMPORTANT → full image visible */
+  border-radius:10px;
 }
 
 .text{
@@ -222,6 +233,18 @@
   .content.reverse{
     flex-direction:column;
     text-align:center;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .video-banner{
+    padding:20px 4% 60px;
+  }
+
+  .video-container{
+    border-radius:18px;
   }
 
 }
