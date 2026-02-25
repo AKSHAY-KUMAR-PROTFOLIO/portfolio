@@ -158,13 +158,12 @@
 .image img{
    width:100%;
   height:auto;
-  max-height:320px;   /* keeps uniform size */
   object-fit:cover; /* IMPORTANT → full image visible */
   border-radius:10px;
 }
 
 .text{
-  max-width:500px;
+  max-width:600px;
 }
 
 .text h2{
@@ -173,7 +172,8 @@
 }
 
 .text p{
-  line-height:1.7;
+  text-align:justify;  
+  line-height:1.8;
   color:#ccc;
 }
 
