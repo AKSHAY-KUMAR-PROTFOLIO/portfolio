@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LED Matrix Display Project | Akshay Kumar</title>
+  <link rel="stylesheet" href="tsp.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Responsive Navbar Styles */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-left img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #00bfff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      color: white;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        background: #333;
+        margin-top: 10px;
+        padding: 10px 0;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR (Same as Portfolio) ===== -->
+ <!-- Navbar -->
+  <nav class="nav">
+    <div class="nav-left">
+      <img src="profile.JPG" alt="Akshay" />
+      <h1>Portfolio</h1>
+    </div>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+   <ul class="nav-links" id="nav-links">
+  <li><a href="index.html#home">Home</a></li>
+  <li><a href="index.html#about">About</a></li>
+  <li><a href="index.html#projects">Projects</a></li>
+  <li><a href="index.html#skills">Skills</a></li>
+  <li><a href="index.html#contact">Contact</a></li>
+</ul>
+  </nav>
+
+
+<!-- ===== PROJECT HEADER ===== -->
+<section class="project-hero">
+  <h1>LED Matrix Display</h1>
+  <p>Create a programmable display for showing scrolling messages and custom patterns.</p>
+</section>
+<!-- ===== VIDEO BANNER ===== -->
+<section class="video-banner">
+  <div class="video-container">
+    <video id="projectVideo" autoplay muted loop playsinline>
+      <source src="images/ledmatrixdemo.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+
+<!-- ===== SCROLL SECTIONS ===== -->
+
+<section class="project-section reveal">
+  <div class="content">
+    <div class="image">
+      <img src="images/linefollowgif.gif" alt="Line Follower Robot Overview">
+    </div>
+
+    <div class="text">
+      <h2>Project Overview</h2>
+      <p>
+       Designed an LED Matrix Display using Arduino Uno to show scrolling text and visual patterns.
+The project focuses on embedded systems, digital electronics, and display control.
+It demonstrates real-time data visualization using programmable microcontrollers.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="project-section reveal">
+  <div class="content reverse">
+    <div class="image">
+      <img src="images/ledmatrixflo.png" alt="Design">
+    </div>
+
+    <div class="text">
+      <h2>Working Methodology</h2>
+      <p>
+        Arduino Uno sends programmed signals to the LED matrix through controlled row and column switching.
+Multiplexing technique is used to light specific LEDs rapidly to form characters.
+The display updates continuously to create smooth scrolling text effects.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="project-section reveal">
+  <div class="content">
+    <div class="image">
+      <img src="leddisplay.jpg" alt="Result">
+    </div>
+
+    <div class="text">
+      <h2>Result</h2>
+      <p>
+       Successfully displayed dynamic messages and animations on the LED matrix.
+Achieved stable and clear output with efficient power usage.
+Improved understanding of microcontroller programming and hardware interfacing.
+
+      </p>
+    </div>
+  </div>
+</section>
+<!-- ===== DOWNLOAD RESOURCE BUTTON ===== -->
+<div class="download-wrapper">
+  <a href="https://drive.google.com/drive/folders/1BJu1w469VGHT31w-i755S8ZG_-iHBF5C?usp=sharing" class="download-btn" download>
+    Download Resource
+  </a>
+</div>
+
+<!-- Footer -->
+  <footer>
+    © 2025 All rights reserved. Built and maintained by Akshay Kumar S.
+  </footer>
+
+
+<!-- ===== SCROLL ANIMATION SCRIPT ===== -->
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+window.addEventListener("scroll", () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+
+// Navbar toggle menu
+      const menuToggle = document.getElementById('menu-toggle');
+      const navLinks = document.getElementById('nav-links');
+  
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('show');
+      });
+  
+      // Close nav when menu item clicked (for mobile)
+      const navItems = document.querySelectorAll('.nav-links li a');
+      navItems.forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('show');
+        });
+      });
+</script>
+
+</body>
+</html>
