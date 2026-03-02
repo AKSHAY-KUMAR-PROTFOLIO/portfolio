@@ -7,40 +7,38 @@
     <link rel="stylesheet" href="weatherstyle.css">
 </head>
 <body>
-    <div class="card">
-        <div class="sky"></div> <!-- dynamic background -->
+   <div class="card">
+    <!-- Video background -->
+    <video class="sky" autoplay muted loop></video>
 
-        <!-- Search -->
-        <div class="search">
-            <input type="text" placeholder="Search city" id="search-box">
-            <button id="search-btn">🔍</button>
+    <!-- Card content -->
+    <div class="weather-info">
+        <h1 class="city">City</h1>
+        <img src="images/clear.png" class="weather-icon">
+        <h2 class="temp">25°C</h2>
+        <p class="description">Clear Sky</p>
+    </div>
+
+    <div class="details">
+        <div class="detail">
+            <p>Humidity</p>
+            <h3 class="humidity">60%</h3>
         </div>
-
-        <!-- Weather Info -->
-        <div class="weather-info">
-            <img class="weather-icon" src="images/clear.png" alt="weather icon">
-            <h1 class="temp">--°C</h1>
-            <h2 class="city">City Name</h2>
-            <p class="description">--</p>
+        <div class="detail">
+            <p>Wind</p>
+            <h3 class="wind">12 km/h</h3>
         </div>
-
-        <!-- Bottom Details -->
-        <div class="details">
-            <div class="detail">
-                <p>Humidity</p>
-                <h3 class="humidity">--%</h3>
-            </div>
-            <div class="detail">
-                <p>Wind</p>
-                <h3 class="wind">-- km/h</h3>
-            </div>
-            <div class="detail">
-                <p>Feels Like</p>
-                <h3 class="feels-like">--°C</h3>
-            </div>
+        <div class="detail">
+            <p>Feels Like</p>
+            <h3 class="feels-like">26°C</h3>
         </div>
     </div>
 
+    <div class="search">
+        <input type="text" id="search-box" placeholder="Enter city">
+        <button id="search-btn">🔍</button>
+    </div>
+</div>
     <script src="weatherscript.js"></script>
 </body>
 </html>

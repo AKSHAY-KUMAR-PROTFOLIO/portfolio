@@ -14,13 +14,13 @@ const windEl = document.querySelector(".wind");
 const feelsEl = document.querySelector(".feels-like");
 
 async function checkWeather(city) {
-    if (!city.trim()) return alert("Enter a city!");
+    if(!city.trim()) return alert("Enter a city!");
 
     try {
         const res = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
         const data = await res.json();
 
-        if (res.status !== 200) return alert(data.message);
+        if(res.status !== 200) return alert(data.message);
 
         const weather = data.weather[0].main;
         const description = data.weather[0].description;
@@ -43,7 +43,7 @@ async function checkWeather(city) {
         feelsEl.textContent = `${feels}°C`;
 
         setWeatherIcon(weather);
-        setWeatherBackground(weather, isDay);
+        setWeatherVideo(weather, isDay);
 
     } catch(err) {
         console.error(err);
@@ -51,7 +51,7 @@ async function checkWeather(city) {
     }
 }
 
-function setWeatherIcon(weather) {
+function setWeatherIcon(weather){
     switch(weather){
         case "Clear": weatherIcon.src="images/clear.png"; break;
         case "Clouds": weatherIcon.src="images/clouds.png"; break;
@@ -64,17 +64,20 @@ function setWeatherIcon(weather) {
     }
 }
 
-function setWeatherBackground(weather, isDay){
-    // Reset classes
-    sky.className = "sky";
+// Dynamic video background
+function setWeatherVideo(weather, isDay){
+    let src = "";
 
-    if (weather==="Rain"||weather==="Drizzle") sky.classList.add("rainy");
-    else if(weather==="Snow") sky.classList.add("snowy");
-    else if(weather==="Thunderstorm") sky.classList.add("thunder");
-    else if(weather==="Clouds") sky.classList.add(isDay ? "cloudy-day":"cloudy-night");
-    else if(weather==="Clear") sky.classList.add(isDay ? "sunny":"night");
-    else sky.classList.add(isDay ? "sunny":"night");
+    if(weather==="Clear") src = isDay ? "images/sunny.mp4":"images/night.mp4";
+    else if(weather==="Clouds") src = isDay ? "images/cloudy-day.mp4":"images/night.mp4";
+    else if(weather==="Rain"||weather==="Drizzle") src = "images/rain.mp4";
+    else if(weather==="Snow") src = "images/snow.mp4";
+    else if(weather==="Thunderstorm") src = "images/thunder.mp4";
+    else src = isDay ? "images/sunny.mp4":"images/night.mp4";
+
+    sky.src = src;
 }
 
+// Event listeners
 searchBtn.addEventListener("click", ()=>checkWeather(searchBox.value));
-searchBox.addEventListener("keypress", (e)=>{ if(e.key==="Enter") checkWeather(searchBox.value); });
+searchBox.addEventListener("keypress", e=>{ if(e.key==="Enter") checkWeather(searchBox.value); });
