@@ -1,100 +1,80 @@
 const apiKey = "347a48fc38b6ed9b71878f03df1cac35";
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
-const searchBox = document.querySelector(".search input");
-const searchBtn = document.querySelector(".search img");
-const weatherIcon = document.querySelector(".weather img");
+const searchBox = document.querySelector("#search-box");
+const searchBtn = document.querySelector("#search-btn");
+const weatherIcon = document.querySelector(".weather-icon");
 const card = document.querySelector(".card");
+const sky = document.querySelector(".sky");
+const cityEl = document.querySelector(".city");
+const tempEl = document.querySelector(".temp");
+const descEl = document.querySelector(".description");
+const humidityEl = document.querySelector(".humidity");
+const windEl = document.querySelector(".wind");
+const feelsEl = document.querySelector(".feels-like");
 
 async function checkWeather(city) {
-    if (city.trim() === "") {
-        alert("Please enter a city name!");
-        return;
-    }
+    if (!city.trim()) return alert("Enter a city!");
 
     try {
-        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+        const res = await fetch(`${apiUrl}${city}&appid=${apiKey}`);
+        const data = await res.json();
 
-        if (!response.ok) {
-            document.querySelector(".card h5").style.display = "block";
-            document.querySelector(".weather").style.display = "none";
-            document.querySelector(".bottom").style.display = "none";
-            return;
-        }
+        if (res.status !== 200) return alert(data.message);
 
-        const data = await response.json();
+        const weather = data.weather[0].main;
+        const description = data.weather[0].description;
+        const temp = Math.round(data.main.temp);
+        const humidity = data.main.humidity;
+        const wind = data.wind.speed;
+        const feels = Math.round(data.main.feels_like);
 
-        document.querySelector(".card h5").style.display = "none";
-        document.querySelector(".weather").style.display = "block";
-        document.querySelector(".bottom").style.display = "flex";
+        const currentTime = data.dt;
+        const sunrise = data.sys.sunrise;
+        const sunset = data.sys.sunset;
+        const isDay = currentTime >= sunrise && currentTime < sunset;
 
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-        document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
+        // Update UI
+        cityEl.textContent = data.name;
+        tempEl.textContent = `${temp}°C`;
+        descEl.textContent = description;
+        humidityEl.textContent = `${humidity}%`;
+        windEl.textContent = `${wind} km/h`;
+        feelsEl.textContent = `${feels}°C`;
 
-        const condition = data.weather[0].main;
-        setWeatherUI(condition);
+        setWeatherIcon(weather);
+        setWeatherBackground(weather, isDay);
 
-    } catch (error) {
-        alert("Something went wrong. Please try again!");
+    } catch(err) {
+        console.error(err);
+        alert("Error fetching weather!");
     }
 }
 
-function setWeatherUI(condition) {
-    switch (condition) {
-        case "Clear":
-            weatherIcon.src = "images/clear.png";
-            card.style.background = "linear-gradient(135deg, #fbc531, #f5a623)";
-            break;
-
-        case "Clouds":
-            weatherIcon.src = "images/clouds.png";
-            card.style.background = "linear-gradient(135deg, #7f8fa6, #353b48)";
-            break;
-
-        case "Rain":
-            weatherIcon.src = "images/rain.png";
-            card.style.background = "linear-gradient(135deg, #4b79a1, #283e51)";
-            break;
-
-        case "Drizzle":
-            weatherIcon.src = "images/drizzle.png";
-            card.style.background = "linear-gradient(135deg, #74b9ff, #0984e3)";
-            break;
-
-        case "Thunderstorm":
-            weatherIcon.src = "images/thunder.png";
-            card.style.background = "linear-gradient(135deg, #2c3e50, #000000)";
-            break;
-
-        case "Snow":
-            weatherIcon.src = "images/snow.png";
-            card.style.background = "linear-gradient(135deg, #dfe6e9, #b2bec3)";
-            break;
-
-        case "Mist":
-        case "Fog":
-        case "Haze":
-        case "Smoke":
-            weatherIcon.src = "images/mist.png";
-            card.style.background = "linear-gradient(135deg, #636e72, #2d3436)";
-            break;
-
-        default:
-            weatherIcon.src = "images/clear.png";
-            card.style.background = "linear-gradient(135deg, #02faf6, #0054fc)";
+function setWeatherIcon(weather) {
+    switch(weather){
+        case "Clear": weatherIcon.src="images/clear.png"; break;
+        case "Clouds": weatherIcon.src="images/clouds.png"; break;
+        case "Rain": weatherIcon.src="images/rain.png"; break;
+        case "Drizzle": weatherIcon.src="images/drizzle.png"; break;
+        case "Thunderstorm": weatherIcon.src="images/thunder.png"; break;
+        case "Snow": weatherIcon.src="images/snow.png"; break;
+        case "Mist": case "Fog": case "Haze": case "Smoke": weatherIcon.src="images/mist.png"; break;
+        default: weatherIcon.src="images/clear.png";
     }
 }
 
-// Click search
-searchBtn.addEventListener("click", () => {
-    checkWeather(searchBox.value);
-});
+function setWeatherBackground(weather, isDay){
+    // Reset classes
+    sky.className = "sky";
 
-// Enter key search
-searchBox.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        checkWeather(searchBox.value);
-    }
-});
+    if (weather==="Rain"||weather==="Drizzle") sky.classList.add("rainy");
+    else if(weather==="Snow") sky.classList.add("snowy");
+    else if(weather==="Thunderstorm") sky.classList.add("thunder");
+    else if(weather==="Clouds") sky.classList.add(isDay ? "cloudy-day":"cloudy-night");
+    else if(weather==="Clear") sky.classList.add(isDay ? "sunny":"night");
+    else sky.classList.add(isDay ? "sunny":"night");
+}
+
+searchBtn.addEventListener("click", ()=>checkWeather(searchBox.value));
+searchBox.addEventListener("keypress", (e)=>{ if(e.key==="Enter") checkWeather(searchBox.value); });
