@@ -31,16 +31,46 @@ body {
 }
 
 /* Video Background */
-.sky {
-    position: absolute;
+.sky{
+    position:absolute;
     top:0;
     left:0;
     width:100%;
     height:100%;
-    object-fit: cover;
+    object-fit:cover;
     z-index:0;
+
+    pointer-events:none;   /* ⭐ prevents iPhone video click */
+}
+/* =========================
+   AUTO TEXT COLOR THEMES
+========================= */
+
+/* DARK MODE (night, rain, storm) */
+.card.dark-mode {
+    color: #ffffff;
 }
 
+.card.dark-mode .description,
+.card.dark-mode p {
+    color: rgba(255,255,255,0.85);
+}
+
+/* LIGHT MODE (sunny day) */
+.card.light-mode {
+    color: #2b2b2b;
+}
+
+.card.light-mode .description,
+.card.light-mode p {
+    color: #444;
+}
+
+/* improve visibility over bright video */
+.card.light-mode {
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(18px);
+}
 /* Card content above video */
 .weather-info, .details, .search {
     position: relative;

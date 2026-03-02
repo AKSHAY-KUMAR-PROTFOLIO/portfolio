@@ -64,20 +64,54 @@ function setWeatherIcon(weather){
     }
 }
 
-// Dynamic video background
+// Dynamic video background (FINAL FIX)
 function setWeatherVideo(weather, isDay){
-    let src = "";
 
-    if(weather==="Clear") src = isDay ? "images/sunny.mp4":"images/night.mp4";
-    else if(weather==="Clouds") src = isDay ? "images/cloudy-day.mp4":"images/night.mp4";
-    else if(weather==="Rain"||weather==="Drizzle") src = "images/rain.mp4";
-    else if(weather==="Snow") src = "images/snow.mp4";
-    else if(weather==="Thunderstorm") src = "images/thunder.mp4";
-    else src = isDay ? "images/sunny.mp4":"images/night.mp4";
+    let videoPath = "";
 
-    sky.src = src;
+    if(weather === "Clear")
+        videoPath = isDay ? "images/sunny.mp4" : "images/night.mp4";
+
+    else if(weather === "Clouds")
+        videoPath = isDay ? "images/cloudy-day.mp4" : "images/night.mp4";
+
+    else if(weather === "Rain" || weather === "Drizzle")
+        videoPath = "images/rain.mp4";
+
+    else if(weather === "Snow")
+        videoPath = "images/snow.mp4";
+
+    else if(weather === "Thunderstorm")
+        videoPath = "images/thunder.mp4";
+
+    else
+        videoPath = isDay ? "images/sunny.mp4" : "images/night.mp4";
+
+
+    // ✅ iPhone-safe video switching
+    sky.pause();
+    sky.src = videoPath;
+    sky.load();
+
+    sky.play().catch(() => {});
+
+    updateTextTheme(isDay, weather);
 }
 
+// Auto text color based on background
+function updateTextTheme(isDay, weather){
+
+    // bright conditions
+    const brightWeather = ["Clear", "Clouds", "Snow"];
+
+    if(isDay && brightWeather.includes(weather)){
+        card.classList.add("light-mode");
+        card.classList.remove("dark-mode");
+    }else{
+        card.classList.add("dark-mode");
+        card.classList.remove("light-mode");
+    }
+}
 // Event listeners
 searchBtn.addEventListener("click", ()=>checkWeather(searchBox.value));
 searchBox.addEventListener("keypress", e=>{ if(e.key==="Enter") checkWeather(searchBox.value); });
