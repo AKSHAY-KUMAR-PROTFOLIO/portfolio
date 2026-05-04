@@ -85,7 +85,7 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 1rem 2rem;
-    background-color: #111;
+   /* background-color: #111; */
     position: sticky;
     top: 0;
     z-index: 10;
@@ -139,7 +139,7 @@
 .banner {
     width: 100%;
     padding: 4rem 2rem;
-    background-color: #111;
+     /* background-color: #111; */
     
   }
   
@@ -249,7 +249,7 @@
   /* About Section */
   .about {
     padding: 3rem 0;
-    background-color: #111;
+      /* background-color: #111; */
   }
   
   .about-container {
@@ -343,7 +343,7 @@
   /* Skills Section */
   .skills {
     padding: 3rem 0;
-    background-color: #111;
+       /* background-color: #111; */
   }
   
   .skills-category h3 {
